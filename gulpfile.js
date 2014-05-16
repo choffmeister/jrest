@@ -13,14 +13,10 @@ var config = {
 
 gulp.task('js', function () {
   return gulp.src(config.src + '**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(gif(config.dist, uglify({ preserveComments: 'some' })))
     .pipe(gulp.dest(config.dest));
-});
-
-gulp.task('lint', function () {
-  return gulp.src(config.src + '**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('watch', function () {
